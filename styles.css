@@ -1,0 +1,359 @@
+:root {
+    --color-deep-sky-blue: #386e92;
+    --card-background: #ffffff;
+    --card-radius: 1rem;
+    --card-shadow: 0 0.75rem 2.5rem rgba(24, 39, 51, 0.07);
+    --content-width: 72rem;
+    --page-gutter: clamp(1.25rem, 5vw, 4rem);
+    --section-spacing: clamp(4rem, 8vw, 7rem);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    line-height: 1.7;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    color: #182733;
+    background: #f6f7f8;
+    font-family: "Fira Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    align-items: center;
+    padding: 1.5rem max(var(--page-gutter), calc((100% - var(--content-width)) / 2));
+    background: #081622;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+nav a {
+    color: #f5f8fa;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    color: #82cfff;
+}
+
+main {
+    flex: 1;
+    width: min(100% - (2 * var(--page-gutter)), var(--content-width));
+    margin-inline: auto;
+    padding-block: var(--section-spacing);
+}
+
+main > section + section,
+.science > section + section,
+.press > section + section {
+    margin-top: var(--section-spacing);
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 700;
+}
+
+h2 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+}
+
+h3 {
+    margin-bottom: 1rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+    font-weight: 600;
+}
+
+p,
+ul {
+    margin-top: 0;
+    margin-bottom: 1.25rem;
+}
+
+li + li {
+    margin-top: 1rem;
+}
+
+a {
+    color: var(--color-deep-sky-blue);
+    text-underline-offset: 0.2em;
+}
+
+footer {
+    position: relative;
+    padding: 1.5rem var(--page-gutter);
+    color: #ffffff;
+    text-align: center;
+    background: rgba(8, 22, 34, 0.72);
+}
+
+footer::before {
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    left: 0;
+    height: 6rem;
+    background: linear-gradient(
+        to top,
+        rgba(8, 22, 34, 0.72) 0%,
+        rgba(8, 22, 34, 0.55) 30%,
+        rgba(8, 22, 34, 0.25) 60%,
+        rgba(8, 22, 34, 0.07) 82%,
+        rgba(8, 22, 34, 0) 100%
+    );
+    content: "";
+    pointer-events: none;
+}
+
+footer p {
+    margin: 0;
+}
+
+.card {
+    margin-block: 2rem;
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    overflow: hidden;
+    background: var(--card-background);
+    border: 0;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+}
+
+.card > :first-child {
+    margin-top: 0;
+}
+
+.card > :last-child {
+    margin-bottom: 0;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+    border-radius: calc(var(--card-radius) / 2);
+    object-fit: cover;
+}
+
+.card > a {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-weight: 500;
+}
+
+.block-container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.photo-block,
+.text-block,
+.photo-text-block {
+    overflow: hidden;
+    border-radius: var(--card-radius);
+}
+
+.block-container > .photo-block,
+.block-container > .text-block,
+.photo-text-block {
+    box-shadow: var(--card-shadow);
+}
+
+.photo-block img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-block {
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    background: var(--card-background);
+}
+
+.text-block > :first-child {
+    margin-top: 0;
+}
+
+.text-block > :last-child {
+    margin-bottom: 0;
+}
+
+.photo-text-block {
+    display: flex;
+    background: var(--card-background);
+}
+
+.photo-text-block > .photo-block {
+    flex: 0 0 38%;
+    border-radius: 0;
+}
+
+.photo-text-block > .text-block {
+    flex: 1;
+    border-radius: 0;
+}
+
+.photo-text-block h1 {
+    font-size: clamp(2.25rem, 5vw, 4rem);
+}
+
+.block-container > .photo-block img {
+    aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 48rem) {
+    .photo-text-block {
+        flex-direction: column;
+    }
+
+    .photo-text-block > .photo-block {
+        flex-basis: auto;
+    }
+
+    .photo-text-block > .photo-block img {
+        max-height: 32rem;
+        aspect-ratio: 4 / 5;
+    }
+}
+
+.contact.card {
+    width: min(100%, 34rem);
+    margin-inline: auto;
+    padding: clamp(1.5rem, 3vw, 2rem);
+    color: #ffffff;
+    background: var(--color-deep-sky-blue);
+    box-shadow: 0 1rem 3rem rgba(7, 89, 199, 0.24);
+}
+
+.contact.card h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.25rem, 5vw, 3.25rem);
+    text-align: center;
+}
+
+.contact.card address {
+    font-style: normal;
+}
+
+.contact.card address p {
+    margin-bottom: 0.35rem;
+}
+
+.contact.card address p:last-child {
+    margin-bottom: 0;
+}
+
+.contact.card a {
+    color: #ffffff;
+}
+
+.speaking__topic.card,
+.science__research-item.card,
+.science__exploration-item.card,
+.science__essay.card,
+.press__feature.card {
+    min-height: calc(100% - 4rem);
+}
+
+.booking-card.card {
+    color: #ffffff;
+    text-align: center;
+    background: var(--color-deep-sky-blue);
+    box-shadow: 0 1rem 3rem rgba(7, 89, 199, 0.24);
+}
+
+.booking-card.card form {
+    margin-top: 1.5rem;
+}
+
+.booking-card .button {
+    color: var(--color-deep-sky-blue);
+    background: #ffffff;
+}
+
+.booking-card .button:hover,
+.booking-card .button:focus-visible {
+    color: #043d8d;
+    background: #eaf2ff;
+}
+
+.button {
+    padding: 0.85rem 1.5rem;
+    color: #ffffff;
+    background: var(--color-deep-sky-blue);
+    border: 0;
+    border-radius: 999px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.button:hover,
+.button:focus-visible {
+    background: #194d5b;
+}
+
+
+body#home,
+body#contact {
+    min-height: 100vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+body#home {
+    background-image: url(img/small/landscape-home-alternating.jpg);
+    background-position: center top;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+}
+
+body#home main {
+    width: min(100% - (2 * var(--page-gutter)), 64rem);
+    padding-top: max(
+        var(--section-spacing),
+        calc(min(75vw, 85vh) - 3rem)
+    );
+}
+
+body#home .block-container {
+    gap: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+body#home main > section + section {
+    margin-top: clamp(5rem, 10vw, 8rem);
+}
+
+body#contact {
+    background-image: url(img/small/contact-ocean.jpg);
+}

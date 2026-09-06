@@ -1,0 +1,6 @@
+# Keep full-resolution source images local.
+img/*
+
+# Commit the web-optimized image copies.
+!img/small/
+!img/small/**
