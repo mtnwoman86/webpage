@@ -6,6 +6,7 @@
     --content-width: 72rem;
     --page-gutter: clamp(1.25rem, 5vw, 4rem);
     --section-spacing: clamp(4rem, 8vw, 7rem);
+    --card-gap: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 *,
@@ -58,10 +59,18 @@ main {
     padding-block: var(--section-spacing);
 }
 
-main > section + section,
+main > section + section {
+    margin-top: var(--section-spacing);
+}
+
 .science > section + section,
 .press > section + section {
-    margin-top: var(--section-spacing);
+    margin-top: calc(var(--card-gap) * 2);
+}
+
+.science h2,
+.press h2 {
+    margin-bottom: 0.65rem;
 }
 
 h1,
@@ -302,12 +311,13 @@ footer p {
 .card-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 4vw, 2.5rem);
+    gap: var(--card-gap);
 }
 
-.card-grid > h2,
-.card-grid > p {
-    grid-column: 1 / -1;
+.card-grid > .card,
+.card-grid > .photo-text-block {
+    margin: 0;
+    min-height: 100%;
 }
 
 @media (min-width: 48rem) {
@@ -316,7 +326,8 @@ footer p {
     }
 }
 
-.press__tedx-card {
+.press__tedx-card,
+.science__essay {
     grid-column: 1 / -1;
 }
 
@@ -336,16 +347,8 @@ footer p {
     border: 0;
 }
 
-.science__exploration-item.card,
-.science__essay.card,
-.press__feature.card {
-    min-height: calc(100% - 4rem);
-}
-
 .speaking__topics {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(1.25rem, 3vw, 2rem);
+    margin-top: 0.65rem;
 }
 
 .speaking__topic.card {
@@ -373,11 +376,6 @@ footer p {
     grid-column: 1 / -1;
 }
 
-@media (min-width: 48rem) {
-    .speaking__topics {
-        grid-template-columns: 1fr 1fr;
-    }
-}
 
 .booking-card.card {
     display: block;
