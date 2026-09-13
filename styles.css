@@ -210,6 +210,7 @@ footer p {
 .photo-text-block {
     display: flex;
     background: var(--card-background);
+    border: 1px solid rgba(7, 89, 199, 0.18);
 }
 
 .photo-text-block > .photo-block {
@@ -220,6 +221,18 @@ footer p {
 .photo-text-block > .text-block {
     flex: 1;
     border-radius: 0;
+}
+
+.photo-text-block--stacked {
+    flex-direction: column;
+}
+
+.photo-text-block--stacked > .photo-block {
+    flex-basis: auto;
+}
+
+.photo-text-block--stacked > .photo-block img {
+    aspect-ratio: 16 / 9;
 }
 
 .photo-text-block h1 {
@@ -285,25 +298,45 @@ footer p {
 }
 
 .booking-card.card {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin-top: clamp(4rem, 8vw, 7rem);
+    padding: clamp(1rem, 2vw, 1.5rem);
     color: #ffffff;
     text-align: center;
-    background: var(--color-deep-sky-blue);
-    box-shadow: 0 1rem 3rem rgba(7, 89, 199, 0.24);
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.3);
+    border: 6px solid var(--color-deep-sky-blue);
+    box-shadow: 0 1rem 3rem rgba(8, 22, 34, 0.24);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    transition: box-shadow 180ms ease;
 }
 
-.booking-card.card form {
-    margin-top: 1.5rem;
+.booking-card.card:hover,
+.booking-card.card:focus-visible,
+.booking-card.card:focus-within {
+    box-shadow:
+        inset 0 0 0 3px var(--color-deep-sky-blue),
+        0 1rem 3rem rgba(8, 22, 34, 0.3);
+}
+
+.booking-card.card h2 {
+    font-weight: 500;
 }
 
 .booking-card .button {
-    color: var(--color-deep-sky-blue);
-    background: #ffffff;
+    display: inline-block;
+    margin-top: 0.75rem;
+    color: #ffffff;
+    background: var(--color-deep-sky-blue);
 }
 
 .booking-card .button:hover,
 .booking-card .button:focus-visible {
-    color: #043d8d;
-    background: #eaf2ff;
+    color: #ffffff;
+    background: var(--color-deep-sky-blue);
 }
 
 .button {
@@ -339,18 +372,96 @@ body#home {
 }
 
 body#home main {
-    width: min(100% - (2 * var(--page-gutter)), 64rem);
-    padding-top: max(
-        var(--section-spacing),
-        calc(min(75vw, 85vh) - 3rem)
-    );
+    padding-top: 0;
 }
 
-body#home .block-container {
+.home-hero__text {
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+    padding-block: clamp(1.5rem, 4vw, 3rem);
+    color: inherit;
+    text-align: left;
+}
+
+.home-hero__text h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(3rem, 6vw, 4.75rem);
+}
+
+.home-hero__text p {
+    margin: 0;
+    font-size: clamp(1.25rem, 2.5vw, 2rem);
+    font-weight: 500;
+}
+
+.home-bio {
+    margin-top: auto;
+    padding: clamp(1rem, 2.5vw, 1.5rem);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    backdrop-filter: blur(4px);
+}
+
+.home-bio > :last-child {
+    margin-bottom: 0;
+}
+
+.home-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(18rem, 2fr);
+    min-height: max(28rem, calc(min(75vw, 85vh) - 5rem));
+    gap: clamp(1rem, 2vw, 2rem);
+    align-items: stretch;
+}
+
+.home-intro > .text-block {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0 0;
+    color: #ffffff;
+    background: transparent;
+    text-shadow: 0 0.15rem 1rem rgba(8, 22, 34, 0.8);
+}
+
+.home-intro > .photo-block {
+    width: min(100%, 28rem);
+    height: auto;
+    align-self: end;
+    justify-self: end;
+    border-radius: var(--card-radius);
+    box-shadow: 0 1rem 3rem rgba(8, 22, 34, 0.3);
+}
+
+.home-intro > .photo-block img {
+    height: auto;
+    object-position: center;
+}
+
+@media (max-width: 48rem) {
+    .home-intro {
+        grid-template-columns: 1fr;
+        padding-block: 3rem;
+    }
+
+    .home-intro > .photo-block {
+        width: min(100%, 28rem);
+        justify-self: center;
+    }
+
+    .home-intro > .photo-block img {
+        height: auto;
+    }
+}
+
+body#about main {
+    width: min(100% - (2 * var(--page-gutter)), 64rem);
+}
+
+body#about .block-container {
     gap: clamp(2.5rem, 6vw, 4.5rem);
 }
 
-body#home main > section + section {
+body#about main > section + section {
     margin-top: clamp(5rem, 10vw, 8rem);
 }
 
